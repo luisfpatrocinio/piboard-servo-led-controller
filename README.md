@@ -1,4 +1,4 @@
-# PiBoard Servo & LED Controller V2
+# PIBoard ServoCtrl
 
 Este projeto foi desenvolvido para a **PIBoard**, uma placa de desenvolvimento educacional. O objetivo é demonstrar o uso integrado de diversos componentes eletrônicos, como botões (com interrupção), LEDs, Servomotor e um Display OLED, tudo orquestrado de forma modular e não-bloqueante utilizando a linguagem C++ no ambiente Arduino.
 

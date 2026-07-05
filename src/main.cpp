@@ -69,7 +69,7 @@ void updateHardware(int state) {
   myServo.write(servoAngle);
   
   // Atualiza o display instantaneamente via a classe DisplayController
-  oled.showState(direction, ledName);
+  oled.showState(state, direction, ledName);
 }
 
 // Initializes pins and serial communication

@@ -17,7 +17,7 @@ public:
 
   // Atualiza o display com as informacoes requisitadas pelo usuario
   // Utiliza __FlashStringHelper* para suportar a macro F() na chamada e economizar RAM
-  void showState(int direction, const __FlashStringHelper* ledName);
+  void showState(int state, int direction, const __FlashStringHelper* ledName);
 };
 
 #endif // LCD_H
