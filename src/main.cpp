@@ -1,5 +1,8 @@
+#include "lcd.h"
 #include <Arduino.h>
 #include <Servo.h>
+#include <Wire.h>
+
 
 // Button pin number
 const int BUTTON_PIN = 2;
@@ -50,6 +53,10 @@ void setup() {
   Serial.begin(9600);
   Serial.println("Starting PiBoard Test...");
 
+  // Initialize LCD
+  initLCD();
+  showInitialMessage();
+
   pinMode(GREEN_LED_PIN, OUTPUT);
   pinMode(YELLOW_LED_PIN, OUTPUT);
   pinMode(RED_LED_PIN, OUTPUT);
@@ -59,11 +66,18 @@ void setup() {
   myServo.attach(SERVO_PIN);
 
   updateHardware(currentState);
+
+  Serial.println("Setup Done!");
 }
 
 // Main loop function. Handles button presses and state transitions
 void loop() {
   bool currentButtonState = digitalRead(BUTTON_PIN);
+
+  if (currentButtonState != previousButtonState) {
+    // Mostrar botão no LCD sempre que mudar de estado
+    showButtonState(currentButtonState);
+  }
 
   if (previousButtonState == HIGH && currentButtonState == LOW) {
     currentState += direction;
@@ -75,7 +89,11 @@ void loop() {
     }
 
     updateHardware(currentState);
-    delay(200); // Debounce
+
+    // Esperar 200ms
+    delay(200);
+
+    Serial.println("State: " + String(currentState));
   }
 
   previousButtonState = currentButtonState;
